@@ -1,2 +1,2 @@
 # Ansible-Docker-YumRepo-Role
-Ansible Role to configure yum repository file in /etc/yum.repos.d/ file
+Ansible Role to configure yum repository file for Docker-ce in /etc/yum.repis.d/ file
