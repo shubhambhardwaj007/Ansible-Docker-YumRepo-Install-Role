@@ -51,3 +51,12 @@
           enabled: 0
           gpgcheck: 1
           gpgkey: https://download.docker.com/linux/centos/gpg
+- name: "Installing Docker-CE"
+  command: "yum install -y  docker-ce --nobest"
+- name: starting docker services
+  service:
+          name: "docker"
+          state: started
+          enabled: yes
+- name: Installing Docker Library
+  command: "pip3 install docker-py"
