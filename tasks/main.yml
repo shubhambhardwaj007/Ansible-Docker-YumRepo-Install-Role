@@ -58,5 +58,9 @@
           name: "docker"
           state: started
           enabled: yes
-- name: Installing Docker Library
-  command: "pip3 install docker-py"
+- package:
+        name: "python3"
+        state: present
+- pip:
+        name: "docker-py >= 1.7.0"
+
