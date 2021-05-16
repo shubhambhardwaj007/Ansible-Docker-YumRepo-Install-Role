@@ -1,0 +1,101 @@
+---
+# tasks file for Ansible-Docker-YumRepo-Role---
+- name: "Configuring Docker repository in Managed Node"
+  hosts: test
+  tasks:
+- yum_repository:
+        file: "{{ item.filename }}"
+        name: "{{ item.name }}"
+        description: "{{ item.description "
+        baseurl: "{{ item.baseurl }}"
+        gpgcheck: "{{ item.gpgcheck }}"
+        gpgkey: "{{ item.gpgkey }}"
+  loops: 
+        - filename : "docker-ce-repo"
+          name: "DockerRepo" 
+          description: "Repository for configuring Docker Engine on Base OS"
+          baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+          gpgcheck: no
+          gpgkey: ""
+        - file: "docker-ce-repo"
+          name: "docker-ce-stable"
+          description: "Docker CE Stable - $basearch"
+          baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+          enabled: 1
+          gpgcheck: 1
+          gpgkey: https://download.docker.com/linux/centos/gpg
+        - file: "docker-ce-repo"
+          name: "docker-ce-stable-debuginfo"
+          description: "Docker CE Stable - Debuginfo $basearch"
+          baseurl: https://download.docker.com/linux/centos/$releasever/debug-$basearch/stable
+          enabled: 0
+          gpgcheck: 1
+          gpgkey: https://download.docker.com/linux/centos/gpg
+        - file: "docker-ce-repo"
+          name: "docker-ce-stable-source"
+          description: "Docker CE Stable - Sources"
+          baseurl: https://download.docker.com/linux/centos/$releasever/source/stable
+          enabled: 0
+          gpgcheck: 1
+          gpgkey: https://download.docker.com/linux/centos/gpg
+        - file: "docker-ce-repo"
+          name: "docker-ce-nightly"
+          description: "Docker CE Nightly - $basearch"
+          baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/nightly
+          enabled: 0
+          gpgcheck: 1
+          gpgkey: https://download.docker.com/linux/centos/gpg
+        - file: "docker-ce-repo"
+          name: "docker-ce-nightly-source"
+          description: "Docker CE Nightly - Sources"
+          baseurl: https://download.docker.com/linux/centos/$releasever/source/nightly
+          enabled: 0
+          gpgcheck: 1
+          gpgkey: https://download.docker.com/linux/centos/gpg
+
+
+
+
+'''
+- yum_repository:
+        file: "docker-ce-repo"
+        name: "docker-ce-stable"
+        description: "Docker CE Stable - $basearch"
+        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+        enabled: 1
+        gpgcheck: 1
+        gpgkey: https://download.docker.com/linux/centos/gpg
+ yum_repository:
+                  file: "docker-ce-repo"
+                  name: "docker-ce-stable-debuginfo"
+                  description: "Docker CE Stable - Debuginfo $basearch"
+                  baseurl: https://download.docker.com/linux/centos/$releasever/debug-$basearch/stable
+                  enabled: 0
+                  gpgcheck: 1
+                  gpgkey: https://download.docker.com/linux/centos/gpg
+          - yum_repository:
+                  file: "docker-ce-repo"
+                  name: "docker-ce-stable-source"
+                  description: "Docker CE Stable - Sources"
+                  baseurl: https://download.docker.com/linux/centos/$releasever/source/stable
+                  enabled: 0
+                  gpgcheck: 1
+                  gpgkey: https://download.docker.com/linux/centos/gpg
+          - yum_repository:
+                  file: "docker-ce-repo"
+                  name: "docker-ce-nightly"
+                  description: "Docker CE Nightly - $basearch"
+                  baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/nightly
+                  enabled: 0
+                  gpgcheck: 1
+                  gpgkey: https://download.docker.com/linux/centos/gpg
+          - yum_repository:
+                  file: "docker-ce-repo"
+                  name: "docker-ce-nightly-source"
+                  description: "Docker CE Nightly - Sources"
+                  baseurl: https://download.docker.com/linux/centos/$releasever/source/nightly
+                  enabled: 0
+                  gpgcheck: 1
+                  gpgkey: https://download.docker.com/linux/centos/gpg
+
+'''
